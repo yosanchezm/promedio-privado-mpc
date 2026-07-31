@@ -1,0 +1,12 @@
+node_modules
+.git
+.gitignore
+*.md
+tests/
+docs/
+.env
+.env.local
+Proyecto_E8.pdf
+proyecto.ipynb
+.vite
+dist

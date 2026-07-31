@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mpc-primary: #4f46e5;
+  --color-mpc-primary-dark: #4338ca;
+  --color-mpc-primary-light: #818cf8;
+  --color-mpc-secondary: #7c3aed;
+  --color-mpc-accent: #06b6d4;
+  --color-mpc-accent-light: #22d3ee;
+  --color-mpc-bg: #f8fafc;
+  --color-mpc-surface: #ffffff;
+  --color-mpc-text: #1e293b;
+  --color-mpc-text-secondary: #64748b;
+  --color-mpc-text-tertiary: #94a3b8;
+  --color-mpc-success: #10b981;
+  --color-mpc-success-light: #d1fae5;
+  --color-mpc-warning: #f59e0b;
+  --color-mpc-warning-light: #fef3c7;
+  --color-mpc-error: #ef4444;
+  --color-mpc-error-light: #fee2e2;
+  --color-mpc-node-1: #4f46e5;
+  --color-mpc-node-2: #7c3aed;
+  --color-mpc-node-3: #06b6d4;
+  --color-mpc-node-4: #10b981;
+  --color-mpc-node-1-bg: #eef2ff;
+  --color-mpc-node-2-bg: #f5f3ff;
+  --color-mpc-node-3-bg: #ecfeff;
+  --color-mpc-node-4-bg: #ecfdf5;
+  --color-mpc-border: #e2e8f0;
+  --color-mpc-border-light: #f1f5f9;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-mpc-bg);
+  color: var(--color-mpc-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: var(--color-mpc-primary);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-mpc-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes progressShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities — gradients, glows, grid pattern
+--------------------------------------------------------------------------- */
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    92deg,
+    var(--color-mpc-primary) 0%,
+    var(--color-mpc-secondary) 55%,
+    var(--color-mpc-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.radial-glow {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.45;
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgb(79 70 229 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(79 70 229 / 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-grid-pattern-fine {
+  background-image:
+    linear-gradient(to right, rgb(100 116 139 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(100 116 139 / 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Range slider (used by Slider / SetupPanel)
+--------------------------------------------------------------------------- */
+
+input[type='range'].mpc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background:
+    linear-gradient(
+      to right,
+      var(--color-mpc-primary) 0%,
+      var(--color-mpc-primary) var(--fill, 50%),
+      var(--color-mpc-border) var(--fill, 50%),
+      var(--color-mpc-border) 100%
+    );
+  cursor: pointer;
+}
+
+input[type='range'].mpc-slider:focus-visible {
+  outline: 2px solid var(--color-mpc-primary);
+  outline-offset: 4px;
+}
+
+input[type='range'].mpc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid var(--color-mpc-primary);
+  box-shadow: 0 1px 4px rgb(15 23 42 / 0.25);
+  margin-top: -7px;
+  transition: transform 0.15s ease;
+}
+
+input[type='range'].mpc-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type='range'].mpc-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid var(--color-mpc-primary);
+  box-shadow: 0 1px 4px rgb(15 23 42 / 0.25);
+  cursor: pointer;
+}
+
+input[type='range'].mpc-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Keyboard hints
+--------------------------------------------------------------------------- */
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  padding: 0.3125rem 0.4375rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-mpc-border);
+  border-bottom-width: 2px;
+  background: var(--color-mpc-surface);
+  color: var(--color-mpc-text-secondary);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
